@@ -1,5 +1,3 @@
-import time
-
 import cv2
 import numpy as np
 
@@ -56,18 +54,18 @@ def display(piece, mask, matched_result, angle):
     # 掩膜处理后图像
     masked_piece = create_masked_piece(mask, piece)
     masked_resized = cv2.resize(masked_piece, (right_width, panel_height))
-    result[panel_height:panel_height*2, right_x:total_width] = masked_resized
+    result[panel_height:panel_height * 2, right_x:total_width] = masked_resized
 
     # 匹配成功时显示旋转图像
     if angle is not None:
         rotated_piece = rotate_image(piece, angle)
         rotated_resized = cv2.resize(rotated_piece, (right_width, panel_height))
-        result[panel_height*2:total_height, right_x:total_width] = rotated_resized
+        result[panel_height * 2:total_height, right_x:total_width] = rotated_resized
         angle_text = f"rotated: {angle:.1f}°"
         cv2.putText(
             result,
             angle_text,
-            (right_x + 10, panel_height*2 + 30),
+            (right_x + 10, panel_height * 2 + 30),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6, (0, 0, 0), 1
         )

@@ -63,6 +63,10 @@ def open_camera(camera_index, crop_ratio, callback):
             mask = create_mask(center_area)
             if callback:
                 callback(center_area, mask)
+            key = cv2.waitKey(1)
+            if key == 27:  # ESC
+                print("exit")
+                break
     finally:
         cap.release()
         cv2.destroyAllWindows()
